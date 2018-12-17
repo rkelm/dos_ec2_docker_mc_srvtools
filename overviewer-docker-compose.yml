@@ -1,0 +1,13 @@
+version: '3'
+services:
+  ov:
+    image: "188892360808.dkr.ecr.eu-central-1.amazonaws.com/overviewer_minecraft:1.12"
+    restart: "no"
+    stop_grace_period: 1m
+    volumes:
+      - ${map_data_dir}/overviewer_config:/root/config
+      - ${world_dir}/world:/root/world
+      - ${world_dir}/world_nether:/root/world_nether
+      - ${world_dir}/world_the_end:/root/world_the_end
+      - ${render_output}:/root/render_output
+    command: ["overviewer.py", "--config=/root/config/overviewer.config"]
